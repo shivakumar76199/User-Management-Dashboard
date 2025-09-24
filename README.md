@@ -1,7 +1,7 @@
 # Ajackus — User Management Dashboard
 
 **Project:** User Management Dashboard  
-**Author:** [Your Name]  
+**Author:** shiva kumar  
 **Date:** 24 September 2025
 
 ---
