@@ -1,7 +1,7 @@
-// src/components/UserForm.js
+
 import React, { useState, useEffect } from 'react';
 
-// simple email validation
+
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
