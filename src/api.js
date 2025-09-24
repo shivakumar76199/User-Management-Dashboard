@@ -1,9 +1,8 @@
-// src/api.js
-// Wrapper around JSONPlaceholder /users endpoint using Fetch API.
+
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
-// Map JSONPlaceholder user to our app user
+
 function mapApiUser(u) {
   const parts = (u.name || '').split(' ');
   const firstName = parts[0] || '';
@@ -32,7 +31,7 @@ export async function getUserById(id) {
 }
 
 export async function addUser(user) {
-  // JSONPlaceholder will respond with created object (id simulated).
+  
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -44,7 +43,7 @@ export async function addUser(user) {
   });
   if (!res.ok) throw new Error('Failed to add user');
   const created = await res.json();
-  // return shape matching our app
+  
   return {
     id: created.id || Date.now(),
     firstName: user.firstName,
