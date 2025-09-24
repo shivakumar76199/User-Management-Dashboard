@@ -1,10 +1,10 @@
-// src/App.js (beginner-friendly version, no arrows or fancy stuff)
+
 import React, { useEffect, useState } from 'react';
 import { getUsers, addUser, updateUser, deleteUserApi } from './api';
 import UserForm from './components/UserForm';
 import './index.css';
 
-// Simple styles
+
 const thStyle = { border: '1px solid #ddd', padding: '8px', background: '#f3f3f3' };
 const tdStyle = { border: '1px solid #ddd', padding: '8px' };
 
@@ -56,23 +56,23 @@ function UsersTable({ users, onEdit, onDelete, onSort }) {
 }
 
 export default function App() {
-  // state
+
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // form
+
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
 
-  // search, sort, pagination
+
   const [searchText, setSearchText] = useState('');
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Load users on first render
+
   useEffect(() => {
     async function load() {
       try {
@@ -89,7 +89,7 @@ export default function App() {
     load();
   }, []);
 
-  // sort handler
+ 
   function handleSort(key) {
     if (sortBy === key) {
       setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'));
@@ -99,11 +99,11 @@ export default function App() {
     }
   }
 
-  // filter + sort + search
+  
   function getProcessedUsers() {
     let list = [...users];
 
-    // search
+   
     if (searchText.trim()) {
       const s = searchText.toLowerCase();
       list = list.filter(u =>
@@ -114,7 +114,7 @@ export default function App() {
       );
     }
 
-    // sort
+   
     if (sortBy) {
       list.sort((a, b) => {
         const A = (a[sortBy] || '').toLowerCase();
@@ -128,7 +128,7 @@ export default function App() {
     return list;
   }
 
-  // pagination
+  
   const processed = getProcessedUsers();
   const totalItems = processed.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
@@ -140,7 +140,7 @@ export default function App() {
     setCurrentPage(p);
   }
 
-  // Add
+
   async function handleAdd(user) {
     try {
       setLoading(true);
@@ -154,7 +154,7 @@ export default function App() {
     }
   }
 
-  // Update
+
   async function handleUpdate(user) {
     try {
       setLoading(true);
@@ -169,7 +169,7 @@ export default function App() {
     }
   }
 
-  // Delete
+
   async function handleDelete(id) {
     try {
       setLoading(true);
@@ -200,7 +200,7 @@ export default function App() {
       {error && <div style={{ color: 'red' }}>{error}</div>}
       {loading && <div>Loading...</div>}
 
-      {/* Form */}
+     
       {showForm && (
         <UserForm
           initialData={editingUser}
@@ -212,7 +212,7 @@ export default function App() {
         />
       )}
 
-      {/* Table */}
+   
       <UsersTable
         users={visibleUsers}
         onEdit={(u) => { setEditingUser(u); setShowForm(true); }}
@@ -220,7 +220,7 @@ export default function App() {
         onSort={handleSort}
       />
 
-      {/* Pagination */}
+ 
       <div style={{ marginTop: 12 }}>
         <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Prev</button>
         <span style={{ margin: '0 8px' }}>Page {currentPage} of {totalPages}</span>
